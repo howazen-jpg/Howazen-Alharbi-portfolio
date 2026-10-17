@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Portfolio — Hawazen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-mode="it">
+
+<nav>
+  <a href="index.html" class="logo" style="text-decoration: none;">H<span>.</span>Alharbi</a>
+  
+  <div class="nav-center">
+    <a href="index.html#aboutSection" class="nav-link">About</a>
+    <a href="index.html#skillsSection" class="nav-link">Skills</a>
+  </div>
+
+  <div class="mode-switch">
+    <a href="it.html" class="mode-btn active">IT</a>
+    <a href="games.html" class="mode-btn">Game Dev</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="itCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">IT Track — Network & Security</div>
+    <h1>Building reliable<br>scalable tech systems<span class="cursor"></span></h1>
+    <div class="role-line">Specializing in: <b>Network Management, Security & Backend Development</b></div>
+    <div class="hero-cta">
+      <a href="#projectsSection" class="btn btn-primary" style="text-decoration: none;">View Projects</a>
+      <a href="assets/cv.pdf" target="_blank" class="btn btn-secondary" style="text-decoration: none;">Resume</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projectsSection">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-title">IT Projects</div>
+      <div class="section-tag">02 Selected Projects</div>
+    </div>
+    
+    <div class="grid">
+      <div class="card" onclick="openModal('enerx')">
+        <div class="card-media">
+          <img src="assets/Pic/EnerX logo.png" alt="EnerX" style="object-fit: contain; padding: 1px; transform: scale(1.40); background: #ffffff;" onerror="this.parentElement.innerHTML='ENERX_PREVIEW'">
+        </div>
+        <div class="card-body">
+          <h3>EnerX</h3>
+          <p>A smart platform designed to document peer-to-peer solar energy trading using blockchain technology.</p>
+          <div class="tags">
+            <span class="tag">Blockchain</span>
+            <span class="tag">Smart Contracts</span>
+            <span class="tag">Web3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal('hashplus')">
+        <div class="card-media">
+          <img src="assets/Pic/Hash plus logo.PNG" alt="Hashplus Dashboard" style="object-fit: contain; padding: 1px; transform: scale(1.00); background: #fffcf0;" onerror="this.parentElement.innerHTML='HASHPLUS_PREVIEW'">
+        </div>
+        <div class="card-body">
+          <h3>Hashplus Dashboard</h3>
+          <p>A professional business analytics dashboard developed during an intensive data analysis bootcamp.</p>
+          <div class="tags">
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Dashboards</span>
+            <span class="tag">BI</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-body-content">
+      <div class="modal-media" id="modalMedia">
+        </div>
+      <div class="modal-text">
+        <h2 id="modalTitle">Project Title</h2>
+        <div class="tags" id="modalTags" style="margin: 15px 0;"></div>
+        <p id="modalDescription">Project detailed description goes here...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="imageLightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightboxImg" class="lightbox-img" src="" alt="Zoomed View">
+</div>
+
+ِِِِِِ<!-- <section class="section" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="cv-strip">
+      <div>
+        <h4>Full resume</h4>
+        <p>Experience, certifications, and skills in one downloadable file</p>
+      </div>
+      <a href="assets/cv.pdf" download class="btn btn-primary" style="text-decoration:none; display:inline-block;">Download PDF</a>
+    </div>
+  </div>
+</section> -->
+
+<script>
+  // بيانات المشاريع مع دعم مصفوفة صور وفيديوهات متعددة
+  const itProjectsData = {
+    enerx: {
+      title: "EnerX — Smart Solar Energy Trading",
+      tags: ["Blockchain", "Smart Contracts", "Web3", "HTML5", "CSS3", "JavaScript", "PHP", "SQL", "Database Management"],
+      desc: "EnerX is an innovative, decentralized peer-to-peer solar energy trading platform. Built using blockchain technology and Ethereum-based smart contracts, it allows solar panel owners to securely document, trade, and sell excess energy directly to neighbors without intermediaries. The project focuses on creating sustainable local energy grids with transparent transaction histories.",
+      // يمكنك وضع مسارات صورك وفيديوهاتك هنا
+      mediaList: [
+        { type: "image", src: "assets/Pic/Poseter_EnerX.jpg", fallback: "Poster EnerX " },
+        { type: "image", src: "assets/Pic/Home.PNG", fallback: "Home" },
+        { type: "image", src: "assets/Pic/Side bar.PNG", fallback: "Side bar" },
+        { type: "image", src: "assets/Pic/Notification.PNG", fallback: "Notification" },
+        { type: "image", src: "assets/Pic/Add offer.PNG", fallback: "Add offer" },
+        { type: "image", src: "assets/Pic/Order history.PNG", fallback: "Order history" },
+      ]
+    },
+    hashplus: {
+      title: "Hashplus Business Intelligence Dashboard",
+      tags: ["Data Analysis", "Dashboards", "BI & Visualization", "Excel", "SQL", "Data cleaning"],
+      desc: "This business dashboard was developed in February 2026 for Hashplus as part of an intensive data analysis bootcamp. The platform aggregates complex transaction metrics, customer behavior, and sales pipelines, converting raw databases into clear, actionable, visual KPIs and revenue forecasts.",
+      mediaList: [
+      { type: "pdf", src: "assets/Pic/Presentation of Dashboard for Hashplus.pdf", fallback: "Hashplus BI Report PDF" }
+      ]
+    }
+  };
+  
+  let currentSlideIndex = 0;
+  let currentSlides = [];
+  
+  function openModal(projectId) {
+    const project = itProjectsData[projectId];
+    if(project) {
+      document.getElementById('modalTitle').innerText = project.title;
+      document.getElementById('modalDescription').innerText = project.desc;
+      
+      // بناء التاغات
+      const tagsContainer = document.getElementById('modalTags');
+      tagsContainer.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+      
+      // بناء المعرض (Slider HTML)
+      currentSlides = project.mediaList;
+      currentSlideIndex = 0;
+      buildCarousel();
+      
+      // إظهار النافذة
+      const modal = document.getElementById('projectModal');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; 
+    }
+  }
+  
+  function buildCarousel() {
+    const mediaContainer = document.getElementById('modalMedia');
+    if (!currentSlides || currentSlides.length === 0) {
+      mediaContainer.innerHTML = '<div style="color:var(--muted)">No Media Available</div>';
+      return;
+    }
+  
+    let html = '<div class="modal-slides-container">';
+    
+    // بناء الشرائح
+    currentSlides.forEach((media, index) => {
+  html += `<div class="modal-slide ${index === 0 ? 'active' : ''}">`;
+
+  if (media.type === 'video') {
+    html += `<video src="${media.src}" autoplay muted loop playsinline controls style="width:100%; height:100%; object-fit:cover;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></video>`;
+  } else if (media.type === 'pdf') {
+    html += `<iframe src="${media.src}#toolbar=1" width="100%" height="100%" style="border: none;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></iframe>`;
+  } else {
+    html += `<img src="${media.src}" alt="${media.fallback}" style="cursor: zoom-in;" onclick="zoomImage(this.src)" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'">`;
+  }
+  html += `</div>`;
+});
+html += '</div>';
+  
+    // إضافة الأسهم إذا كان هناك أكثر من شريحة واحدة
+    if (currentSlides.length > 1) {
+      html += `<button class="nav-arrow arrow-left" onclick="changeSlide(-1)">&#10094;</button>`;
+      html += `<button class="nav-arrow arrow-right" onclick="changeSlide(1)">&#10095;</button>`;
+      
+      // إضافة نقاط التحديد (Dots) بالأسفل
+      html += '<div class="modal-dots">';
+      currentSlides.forEach((_, index) => {
+        html += `<span class="modal-dot ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})"></span>`;
+      });
+      html += '</div>';
+    }
+  
+    mediaContainer.innerHTML = html;
+  }
+  
+  function changeSlide(direction) {
+    showSlide(currentSlideIndex + direction);
+  }
+  
+  function setSlide(index) {
+    showSlide(index);
+  }
+  
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.modal-slide');
+    const dots = document.querySelectorAll('.modal-dot');
+    
+    if (slides.length === 0) return;
+  
+    // إيقاف تشغيل أي فيديو حالي قبل الانتقال لشريحة أخرى
+    const currentActiveVideo = slides[currentSlideIndex].querySelector('video');
+    if (currentActiveVideo) {
+      currentActiveVideo.pause();
+    }
+  
+    // ضبط حدود المؤشر الدائري
+    if (index >= slides.length) {
+      currentSlideIndex = 0;
+    } else if (index < 0) {
+      currentSlideIndex = slides.length - 1;
+    } else {
+      currentSlideIndex = index;
+    }
+  
+    // تبديل الكلاسات الفعالة للشرائح والنقاط
+    slides.forEach((slide, i) => {
+      if (i === currentSlideIndex) {
+        slide.classList.add('active');
+        // لو الشريحة الجديدة فيديو، نشغلها تلقائياً
+        const video = slide.querySelector('video');
+        if (video) video.play();
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+  
+    dots.forEach((dot, i) => {
+      if (i === currentSlideIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  function closeModal() {
+    document.getElementById('projectModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; 
+  }
+  
+  window.onclick = function(event) {
+    const modal = document.getElementById('projectModal');
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+
+  // دوال تكبير وتصغير الصور (Lightbox)
+  function zoomImage(imageSrc) {
+  // إذا كان الرابط لملف PDF، نقوم بفتحه مباشرة في لسان تبويب جديد بدقة كاملة وخيارات تفاعلية ممتازة
+  if (imageSrc.toLowerCase().endsWith('.pdf')) {
+    window.open(imageSrc, '_blank');
+  } else {
+    // التكبير العادي للصور
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.src = imageSrc;
+    lightbox.style.display = 'flex';
+  }
+}
+
+function closeLightbox() {
+  document.getElementById('imageLightbox').style.display = 'none';
+}
+  </script>
+
+<script src="itCanvas.js"></script>
+</body>
+</html>

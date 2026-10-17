@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Dev Portfolio — Hawazen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-mode="games">
+
+<nav>
+  <a href="index.html" class="logo" style="text-decoration: none;">H<span>.</span>Alharbi</a>
+  
+  <div class="nav-center">
+    <a href="index.html#aboutSection" class="nav-link">About</a>
+    <a href="index.html#skillsSection" class="nav-link">Skills</a>
+  </div>
+
+  <div class="mode-switch">
+    <a href="it.html" class="mode-btn">IT</a>
+    <a href="games.html" class="mode-btn active">Game Dev</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <canvas id="gameCanvas"></canvas>
+  <div class="wrap">
+    <div class="eyebrow">Game Development Track</div>
+    <h1>Designing interactive worlds and immersive gameplay<span class="cursor"></span></h1>
+    <div class="role-line">Creating with: <b>Unity Engine, ProBuilder & C#</b></div>
+    <div class="hero-cta">
+      <a href="#projectsSection" class="btn btn-primary" style="text-decoration: none;">View Games</a>
+      <a href="assets/cv.pdf" target="_blank" class="btn btn-secondary" style="text-decoration: none;">Resume</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projectsSection">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-title">Game Projects</div>
+      <div class="section-tag">02 Selected Projects</div>
+    </div>
+    
+    <div class="grid">
+      <div class="card" onclick="openModal('saudirise')">
+        <div class="card-media">
+         <img src="assets/Pic/SauidRise.PNG" alt="Saudi Rise" onerror="this.parentElement.innerHTML='SAUDI_RISE_PREVIEW'">
+        </div>
+        <div class="card-body">
+          <h3>Saudi Rise</h3>
+          <p>A 2D physics-based balloon puzzle adventure featuring a journey across iconic Saudi cities and culture.</p>
+          <div class="tags">
+            <span class="tag">Unity 2D</span>
+            <span class="tag">C#</span>
+            <span class="tag">2D Physics</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" onclick="openModal('transporter')">
+        <div class="card-media">
+          <img src="assets/Pic/Transporter.PNG" alt="Transporter" onerror="this.parentElement.innerHTML='Transporter'">
+        </div>
+        <div class="card-body">
+          <h3>Transporter</h3>
+          <p>An action-packed 2D delivery game with customizable vehicles, dynamic night mode, and speed-driven physics challenges.</p>
+          <div class="tags">
+            <span class="tag">Unity 2D</span>
+            <span class="tag">C#</span>
+            <span class="tag">Physics</span>
+          </div>
+        </div>
+      </div> 
+  </div>
+</section>
+
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div class="modal-body-content">
+      <div class="modal-media" id="modalMedia">
+        </div>
+      <div class="modal-text">
+        <h2 id="modalTitle">Project Title</h2>
+        <div class="tags" id="modalTags" style="margin: 15px 0;"></div>
+        <p id="modalDescription">Project detailed description goes here...</p>
+        <div id="modalAction" style="margin-top: 25px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="imageLightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightboxImg" class="lightbox-img" src="" alt="Zoomed View">
+</div>
+
+ِِِِِِ<!-- <section class="section" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="cv-strip">
+      <div>
+        <h4>Full resume</h4>
+        <p>Experience, certifications, and skills in one downloadable file</p>
+      </div>
+      <a href="assets/cv.pdf" download class="btn btn-primary" style="text-decoration:none; display:inline-block;">Download PDF</a>
+    </div>
+  </div>
+</section> -->
+
+<script src="script.js"></script>
+<script>
+  // بيانات ألعابي المخصصة مع دعم مصفوفة صور وفيديوهات متعددة
+  const gameProjectsData = {
+    saudirise: {
+      title: "Saudi Rise",
+      tags: ["Unity 2D", "C#", "2D Physics", "Level Design", "Pixel Art UI", "Game Mechanics"],
+      desc: "Saudi Rise is a physics-driven 2D puzzle adventure that takes players on a cultural journey across Saudi Arabia (Riyadh, Abha, AlUla, Jeddah, and Tabuk). Players drag and attach balloons to lift crates and navigate complex environmental obstacles to reach the finish line safely. Developed using Unity and C#, the game features custom balloon-lift physics, dynamic balance control, a 3-star level evaluation system, and vibrant level aesthetics reflecting Saudi landmark identities.",
+      downloadUrl: "https://reemalgh.itch.io/saudi-rise",
+      mediaList: [
+        { type: "video", src: "assets/Pic/Saudi rise trailer.mp4", fallback: "Game Trailer" },
+        { type: "pdf", src: "assets/Pic/SAUDI RISE.pdf", fallback: "Saudi Rise PDF" }
+      ]
+    },
+    transporter: {
+      title: "Transporter",
+      tags: ["Unity 2D", "C#", "Physics", "Driving", "Casual" , "Arcade"],
+      desc: "Transporter is a fast-paced 2D arcade delivery game where players navigate dynamic levels, dodge obstacles, and deliver packages before time runs out. It features custom vehicle styles, a toggleable night mode with functional headlights, and increasingly intense physics-based challenges.",
+      downloadUrl: "https://howazenalharbi.itch.io/transporter",
+      mediaList: [
+        { type: "image", src: "assets/Pic/Transporter1.PNG", fallback: "Balloon Game Stage 1 Preview" },
+        { type: "image", src: "assets/Pic/Transporter2.PNG", fallback: "Boss Level 5 Preview" }
+      ]
+    }
+  };
+  
+  let currentSlideIndex = 0;
+  let currentSlides = [];
+  
+ function openModal(projectId) {
+  const project = gameProjectsData[projectId];
+  if(project) {
+    document.getElementById('modalTitle').innerText = project.title;
+    document.getElementById('modalDescription').innerText = project.desc;
+    
+    const tagsContainer = document.getElementById('modalTags');
+    tagsContainer.innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    
+    // إظهار زر itch.io إذا كان الرابط موجوداً في بيانات المشروع
+    const actionContainer = document.getElementById('modalAction');
+    if (actionContainer) {
+      if (project.downloadUrl) {
+        actionContainer.innerHTML = `
+          <a href="${project.downloadUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-decoration: none; display: inline-block;">
+            Play / Download on itch.io ↗
+          </a>`;
+      } else {
+        actionContainer.innerHTML = '';
+      }
+    }
+
+    currentSlides = project.mediaList;
+    currentSlideIndex = 0;
+    buildCarousel();
+    
+    const modal = document.getElementById('projectModal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; 
+  }
+}
+
+  function buildCarousel() {
+    const mediaContainer = document.getElementById('modalMedia');
+    if (!currentSlides || currentSlides.length === 0) {
+      mediaContainer.innerHTML = '<div style="color:var(--muted)">No Media Available</div>';
+      return;
+    }
+  
+    let html = '<div class="modal-slides-container">';
+    
+    currentSlides.forEach((media, index) => {
+  html += `<div class="modal-slide ${index === 0 ? 'active' : ''}">`;
+
+     if (media.type === 'video') {
+    html += `<video src="${media.src}" autoplay muted loop playsinline controls style="width:100%; height:100%; object-fit:cover;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></video>`;
+  } else if (media.type === 'pdf') {
+    html += `<iframe src="${media.src}#toolbar=1" width="100%" height="100%" style="border: none;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></iframe>`;
+  } else {
+    html += `<img src="${media.src}" alt="${media.fallback}" style="cursor: zoom-in;" onclick="zoomImage(this.src)" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'">`;
+  }
+  html += `</div>`;
+});
+html += '</div>';
+  
+    if (currentSlides.length > 1) {
+      html += `<button class="nav-arrow arrow-left" onclick="changeSlide(-1)">&#10094;</button>`;
+      html += `<button class="nav-arrow arrow-right" onclick="changeSlide(1)">&#10095;</button>`;
+      
+      html += '<div class="modal-dots">';
+      currentSlides.forEach((_, index) => {
+        html += `<span class="modal-dot ${index === 0 ? 'active' : ''}" onclick="setSlide(${index})"></span>`;
+      });
+      html += '</div>';
+    }
+  
+    mediaContainer.innerHTML = html;
+  }
+  
+  function changeSlide(direction) {
+    showSlide(currentSlideIndex + direction);
+  }
+  
+  function setSlide(index) {
+    showSlide(index);
+  }
+  
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.modal-slide');
+    const dots = document.querySelectorAll('.modal-dot');
+    
+    if (slides.length === 0) return;
+  
+    const currentActiveVideo = slides[currentSlideIndex].querySelector('video');
+    if (currentActiveVideo) {
+      currentActiveVideo.pause();
+    }
+  
+    if (index >= slides.length) {
+      currentSlideIndex = 0;
+    } else if (index < 0) {
+      currentSlideIndex = slides.length - 1;
+    } else {
+      currentSlideIndex = index;
+    }
+  
+    slides.forEach((slide, i) => {
+      if (i === currentSlideIndex) {
+        slide.classList.add('active');
+        const video = slide.querySelector('video');
+        if (video) video.play();
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+  
+    dots.forEach((dot, i) => {
+      if (i === currentSlideIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
+  function closeModal() {
+    document.getElementById('projectModal').style.display = 'none';
+    document.body.style.overflow = 'auto'; 
+  }
+  
+  window.onclick = function(event) {
+    const modal = document.getElementById('projectModal');
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+
+  // دوال تكبير وتصغير الصور (Lightbox)
+function zoomImage(imageSrc) {
+  // إذا كان الرابط لملف PDF، نقوم بفتحه مباشرة في لسان تبويب جديد بدقة كاملة وخيارات تفاعلية ممتازة
+  if (imageSrc.toLowerCase().endsWith('.pdf')) {
+    window.open(imageSrc, '_blank');
+  } else {
+    // التكبير العادي للصور
+    const lightbox = document.getElementById('imageLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.src = imageSrc;
+    lightbox.style.display = 'flex';
+  }
+}
+
+
+function closeLightbox() {
+  document.getElementById('imageLightbox').style.display = 'none';
+}
+  </script>
+
+</body>
+</html>
