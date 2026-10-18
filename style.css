@@ -574,3 +574,17 @@ h1 .cursor{
   background: var(--accent, #8a2be2); /* أو لون الهوية الخاص بموقعك */
   border-radius: 10px;
 }
+
+/* ألوان الوضع النهاري */
+[data-theme="light"] {
+    --bg: #F4F1EA;
+    --surface: #E8E2D5;
+    --surface-2: #DCD4C4;
+    --burgundy: #8E2849;
+    --burgundy-light: #B84267;
+    --ivory: #1A1817;
+    --muted: #6B655E;
+    --line: rgba(26,24,23,0.1);
+    --accent: #5D6D7E;
+    --accent-soft: rgba(93,109,126,0.12);
+}

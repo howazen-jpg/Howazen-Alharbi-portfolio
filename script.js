@@ -60,4 +60,30 @@ if (canvas) {
 
   // تشغيل الأنيميشن تلقائياً
   startGameBg();
+
+  const themeToggleBtn = document.getElementById('theme-toggle');
+
+// التحقق من تفضيل المستخدم المحفوظ مسبقاً
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (savedTheme === 'light') {
+        themeToggleBtn.textContent = '🌙';
+    }
+}
+
+// عند الضغط على الزر يتم تغيير الوضع وحفظه
+themeToggleBtn.addEventListener('click', function () {
+    let currentTheme = document.documentElement.getAttribute('data-theme');
+    
+    if (currentTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggleBtn.textContent = '☀️';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggleBtn.textContent = '🌙';
+    }
+});
 }
