@@ -186,7 +186,12 @@
   if (media.type === 'video') {
     html += `<video src="${media.src}" autoplay muted loop playsinline controls style="width:100%; height:100%; object-fit:cover;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></video>`;
   } else if (media.type === 'pdf') {
-    html += `<iframe src="${media.src}#toolbar=1" width="100%" height="100%" style="border: none;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></iframe>`;
+    html += `<div style="position: relative; width: 100%; height: 100%;">
+      <iframe src="${media.src}#toolbar=1" width="100%" height="100%" style="border: none;" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'"></iframe>
+      <a href="${media.src}" target="_blank" title="فتح في نافذة مستقلة" style="position: absolute; top: 10px; right: 10px; background: rgba(0, 0, 0, 0.7); color: #fff; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(4px); z-index: 10; transition: background 0.2s;">
+        <span>🔍</span> تمديد / فتح
+      </a>
+    </div>`;
   } else {
     html += `<img src="${media.src}" alt="${media.fallback}" style="cursor: zoom-in;" onclick="zoomImage(this.src)" onerror="this.outerHTML='<div class=\'modal-slide-placeholder\' style=\'display:flex;align-items:center;justify-content:center;height:100%;background:var(--surface-2);color:var(--muted)\'>${media.fallback}</div>'">`;
   }
