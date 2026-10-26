@@ -26,3 +26,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+const container = document.getElementById('interactiveBox');
+const cube = document.querySelector('.cyber-cube');
+
+if (container && cube) {
+    container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        // تحويل حركة الماوس إلى ميلان في المكعب
+        cube.style.transform = `rotateX(${-y / 3}deg) rotateY(${x / 3}deg)`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        cube.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+}
